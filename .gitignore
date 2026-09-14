@@ -1,0 +1,13 @@
+node_modules/
+.env
+meshcentral-data/
+meshcentral-files/
+*.db
+*.db-journal
+*.jlog
+*.log
+*.key
+*.crt
+*.pem
+
+

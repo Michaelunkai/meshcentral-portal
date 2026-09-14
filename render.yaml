@@ -17,4 +17,6 @@ services:
         generateValue: true
       - key: MESH_NEW_ACCOUNTS
         value: "false"
+      - key: MESH_POSTGRES_URL
+        sync: false
 

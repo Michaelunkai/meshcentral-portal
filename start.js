@@ -13,10 +13,23 @@ const publicUrl = process.env.MESH_PUBLIC_URL || process.env.RENDER_EXTERNAL_URL
 const publicHost = (() => {
   try { return new URL(publicUrl).hostname; } catch (_) { return publicUrl.replace(/^https?:\/\//, '').split('/')[0]; }
 })();
+const postgresUrl = process.env.MESH_POSTGRES_URL || '';
 
 if (!publicHost) {
   console.error('MESH_PUBLIC_URL or RENDER_EXTERNAL_URL is required.');
   process.exit(2);
+}
+
+if (postgresUrl) {
+  try {
+    const parsedPostgresUrl = new URL(postgresUrl);
+    if (parsedPostgresUrl.protocol !== 'postgres:' && parsedPostgresUrl.protocol !== 'postgresql:') {
+      throw new Error('unsupported protocol');
+    }
+  } catch (_) {
+    console.error('MESH_POSTGRES_URL must be a valid PostgreSQL connection URL.');
+    process.exit(2);
+  }
 }
 
 fs.mkdirSync(dataPath, { recursive: true });
@@ -45,6 +58,12 @@ const config = {
     }
   }
 };
+
+// MeshCentral supports PostgreSQL through the settings object. Keep this
+// optional so the public repository remains deployable without a database;
+// when supplied as a private host environment variable, account, mesh, and
+// node state survive web-service filesystem replacement.
+if (postgresUrl) config.settings.postgres = postgresUrl;
 
 fs.writeFileSync(path.join(dataPath, 'config.json'), JSON.stringify(config, null, 2) + '\n', { mode: 0o600 });
 

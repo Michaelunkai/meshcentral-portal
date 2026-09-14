@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "Reproducible MeshCentral deployment for a persistent WebSocket-capable host.",
   "dependencies": {
-    "meshcentral": "1.2.5"
+    "meshcentral": "1.2.5",
+    "pg": "8.16.3"
   }
 }
 

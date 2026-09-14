@@ -14,10 +14,14 @@ session key and a generated initial administrator password; read that password
 from the private service environment after deployment. The default hostname is
 `https://meshcentral-global.onrender.com/`.
 
-The package stores MeshCentral state under `/data`. A free Render instance has
-an ephemeral filesystem and sleeps after inactivity, so this is a test/hobby
-deployment. For durable unattended management, attach persistent storage or an
-external supported database and use a paid always-on service.
+The package stores MeshCentral state under `/data` when `MESH_POSTGRES_URL` is
+unset. A free Render instance has an ephemeral filesystem and sleeps after
+inactivity, so this is a test/hobby deployment. The repository includes an
+optional private `MESH_POSTGRES_URL` hook for a supported external PostgreSQL
+database; configure that value in the hosting dashboard, never in Git. The
+scheduled health check reduces idle sleep but cannot guarantee availability.
+For durable unattended management, use the external database with a paid
+always-on service or another host with equivalent persistence.
 
 ## Important limits
 

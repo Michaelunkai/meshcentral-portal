@@ -19,7 +19,6 @@ unset. A free Render instance has an ephemeral filesystem and sleeps after
 inactivity, so this is a test/hobby deployment. The repository includes an
 optional private `MESH_POSTGRES_URL` hook for a supported external PostgreSQL
 database; configure that value in the hosting dashboard, never in Git. The
-scheduled health check reduces idle sleep but cannot guarantee availability.
 For durable unattended management, use the external database with a paid
 always-on service or another host with equivalent persistence.
 

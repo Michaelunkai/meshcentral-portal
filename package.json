@@ -1,0 +1,10 @@
+{
+  "name": "meshcentral-global",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Reproducible MeshCentral deployment for a persistent WebSocket-capable host.",
+  "dependencies": {
+    "meshcentral": "1.2.5"
+  }
+}
+

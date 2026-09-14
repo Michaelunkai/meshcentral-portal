@@ -39,6 +39,7 @@ const config = {
   domains: {
     '': {
       title: process.env.MESH_TITLE || 'MeshCentral Global',
+      certurl: publicUrl,
       newAccounts: process.env.MESH_NEW_ACCOUNTS === 'true',
       userNameIsEmail: false
     }

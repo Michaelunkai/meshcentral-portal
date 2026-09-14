@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: meshcentral-global
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: MESH_PUBLIC_URL
+        value: https://meshcentral-global.onrender.com
+      - key: MESH_SESSION_KEY
+        generateValue: true
+      - key: MESH_ADMIN_USER
+        value: admin
+      - key: MESH_ADMIN_PASSWORD
+        generateValue: true
+      - key: MESH_NEW_ACCOUNTS
+        value: "false"
+
